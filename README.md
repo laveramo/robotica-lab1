@@ -46,6 +46,7 @@ Muestra el manual de ayuda para un comando que se le especifique.
 2. Iniciamos el nodo turtlesim con el comando `rosrun turtlesim turtlesim_node` el cual corre la simulación de la  tortuga.
 
 [![image.png](https://i.postimg.cc/J7NfWncX/image.png)](https://postimg.cc/qg7bspFB)
+
 3. En Matlab, se crea el script *publisher.m* (contenido en la carpeta *matlab*) el cual es tomado de la guía de laboratorio[1]. Este script crea una conexión de MATLAB con el nodo maestro de ROS, además de crear un publicador para enviar un mensaje que permite modificar la velocidad de la tortuga.
 4. En la misma carpeta *matlab* se crea el script *subscriber.m* el cual permite suscribirse al tópico de pose de la simulación turtle1.
 5. En esta misma carpeta se crea el script *server.m* el cual permite enviar todos los valores asociados a la pose de turtle1 (posición en x, en y, ángulo theta) a través del servicio *teleport_absolute*.
@@ -83,7 +84,15 @@ Finalmente, se finaliza el nodo maestro de ROS con el comando `rosshutdown`.
 6. Para lograr el giro de 180° se crea la función `teleport_relative()` la cual usa el servicio *turtle1/teleport_relative*. Esta función recibe el movimiento relativo lineal y angular, de esta forma si se quiere dar un giro de 180° se llamará esta función con linear=0 y angular=pi.
 7. Finalmente, para definir las diferentes tareas que realizará cada tecla se crea la función `check()` que llamará las funciones anteriores dependiendo de la tecla oprimida. Por otro lado, en el main del script se tiene un ciclo infinito (se sale del mismo oprimiendo la tecla q) que se mantiene leyendo el teclado.
 ### Resultados y análisis
-La función`PubVel()` que permite el movimiento hacia adelante, atrás y los giros incluye como parámetro el tiempo, por lo cual, modificar esta variable hará que el movimiento de la tortuga sea más o menos suave o brusco. Por otro lado, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
+La función`PubVel()` que permite el movimiento hacia adelante, atrás y los giros incluye como parámetro el tiempo, por lo cual, modificar esta variable hará que el movimiento de la tortuga sea más o menos suave o brusco. En la siguiente imagen se muestra una secuencia de movimientos donde se usó un tiempo de 0.5 s:
+
+[![image.png](https://i.postimg.cc/y8c8ZRMN/image.png)](https://postimg.cc/BjZ3WjQW)
+
+En cambio en esta, se usó un tiempo de 1 s:
+[![image.png](https://i.postimg.cc/4NC6k6Qf/image.png)](https://postimg.cc/hhrzV7Y6)
+
+Por otro lado, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
+
 ## Referencias
 [1] [Laboratorio 1 - Parte 2: Introducción ROS](https://drive.google.com/file/d/19UOE_eI-ob2ZymNHWFrYgrxLQfgOon43/view)
  
