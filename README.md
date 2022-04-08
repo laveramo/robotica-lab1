@@ -80,8 +80,10 @@ Finalmente, se finaliza el nodo maestro de ROS con el comando `rosshutdown`.
 3. Primero, para lograr la lectura de las teclas se crea la función `getKey()` tomada de [5].
 4. Para lograr el movimiento hacia adelante, atrás y el giro horario y antihorario se crea la función `PubVel()` la cual recibe como parámetros la velocidad lineal y angular (relativa). Esta función permite publicar en el tópico *turtle1/cmd_vel* 
 5. Para lograr el retorno a la posición se crea la función `teleport_absolute()` la cual usa el servicio *turtle1/teleport_absolute*. Esta función recibe las coordenadas x,y y el ángulo theta que conforman la pose de la tortuga. Así, si se desea retornar a la posición central, se llamará esta función con x=5, y=5 y theta=0.
+6. Para lograr el giro de 180° se crea la función `teleport_relative()` la cual usa el servicio *turtle1/teleport_relative*. Esta función recibe el movimiento relativo lineal y angular, de esta forma si se quiere dar un giro de 180° se llamará esta función con linear=0 y angular=pi.
+7. Finalmente, para definir las diferentes tareas que realizará cada tecla se crea la función `check()` que llamará las funciones anteriores dependiendo de la tecla oprimida. Por otro lado, en el main del script se tiene un ciclo infinito (se sale del mismo oprimiendo la tecla q) que se mantiene leyendo el teclado.
 ### Resultados y análisis
-
+La función`PubVel()` que permite el movimiento hacia adelante, atrás y los giros incluye como parámetro el tiempo, por lo cual, modificar esta variable hará que el movimiento de la tortuga sea más o menos suave o brusco. Por otro lado, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
 ## Referencias
 [1] [Laboratorio 1 - Parte 2: Introducción ROS](https://drive.google.com/file/d/19UOE_eI-ob2ZymNHWFrYgrxLQfgOon43/view)
  
