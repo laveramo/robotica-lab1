@@ -19,13 +19,12 @@ def getKey():
         termios.tcsetattr(fd, TERMIOS.TCSAFLUSH, old)
     return c
     
-def pubVel(vel_y, ang_z, t):
+def pubVel(vel_x, ang_z, t):
     pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
     rospy.init_node('velPub', anonymous=False)
     vel = Twist()
-    vel.linear.x = vel_y
+    vel.linear.x = vel_x
     vel.angular.z = ang_z
-    #rospy.loginfo(vel)
     endTime = rospy.Time.now() + rospy.Duration(t)
     while rospy.Time.now() < endTime:
         pub.publish(vel)
@@ -35,7 +34,6 @@ def teleport_absolute(x, y, ang):
     try:
         teleportA = rospy.ServiceProxy('/turtle1/teleport_absolute', TeleportAbsolute)
         resp1 = teleportA(x, y, ang)
-        print('Teleported to x: {}, y: {}, ang: {}'.format(str(x),str(y),str(ang)))
     except rospy.ServiceException as e:
         print(str(e))
 
@@ -44,7 +42,6 @@ def teleport_relative(linear, angular):
     try:
         teleportA = rospy.ServiceProxy('/turtle1/teleport_relative', TeleportRelative)
         resp1 = teleportA(linear, angular)
-        #print('Teleported to x: {}, y: {}, ang: {}'.format(str(x),str(y),str(ang)))
     except rospy.ServiceException as e:
         print(str(e))
 

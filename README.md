@@ -65,8 +65,21 @@ El script *subscriber.m* crea un suscriptor a través de la función `rossubscri
 #### Server y finalización del nodo maestro
 El archivo *server.m* permite enviar todos los valores de la pose de turtle1 a través del servicio *teleport_absolute*. Para ello, se crea un objeto tipo cliente con la función `rossvcclient()` la cual recibe como parámetro el nombre del servicio. Luego, con la función `rosmessage()` se crea un mensaje al que se le cambiarán los valores de la pose, para finalmente llamar al servicio con la función `call()`. En la imagen podemos observar como se teleporta la tortuga a la posición x=5, y=5, theta=pi.
 
+[![image.png](https://i.postimg.cc/V6Z9MXXT/image.png)](https://postimg.cc/2bvBNbcF)
+
+Finalmente, se finaliza el nodo maestro de ROS con el comando `rosshutdown`.
+
 ## 3. Conexión de ROS con Python
 ### Procedimiento
+1. Iniciamos el nodo maestro de ROS y el nodo turtle_sim (pasos 1 y 2 de la sección anterior). 
+2. Creamos el archivo *myTeleopKey.py* en la carpeta *scripts* el cual permite que la tortuga:
+	- Se mueva hacia adelante y hacia atrás con las teclas W y S.
+	- Gire en sentido horario y antihorario con las teclas D y A.
+	- Retorne a su posición y orientación centrales con la tecla R.
+	- De un giro de 180° con la tecla espacio.
+3. Primero, para lograr la lectura de las teclas se crea la función `getKey()` tomada de [5].
+4. Para lograr el movimiento hacia adelante, atrás y el giro horario y antihorario se crea la función `PubVel()` la cual recibe como parámetros la velocidad lineal y angular (relativa). Esta función permite publicar en el tópico *turtle1/cmd_vel* 
+5. Para lograr el retorno a la posición se crea la función `teleport_absolute()` la cual usa el servicio *turtle1/teleport_absolute*. Esta función recibe las coordenadas x,y y el ángulo theta que conforman la pose de la tortuga. Así, si se desea retornar a la posición central, se llamará esta función con x=5, y=5 y theta=0.
 ### Resultados y análisis
 
 ## Referencias
@@ -77,3 +90,5 @@ El archivo *server.m* permite enviar todos los valores de la pose de turtle1 a t
 [3] [Create ROS messages - MATLAB rosmessage](https://www.mathworks.com/help/ros/ref/rosmessage.html)
 
 [4] [Connect to ROS service server - MATLAB rossvcclient](https://www.mathworks.com/help/ros/ref/serviceclient.html	)
+
+[5] [Python for fun: Get Key Pressed in Python](http://python4fun.blogspot.com/2008/06/get-key-press-in-python.html)
