@@ -89,6 +89,7 @@ La función`PubVel()` que permite el movimiento hacia adelante, atrás y los gir
 [![image.png](https://i.postimg.cc/y8c8ZRMN/image.png)](https://postimg.cc/BjZ3WjQW)
 
 En cambio en esta, se usó un tiempo de 1 s:
+
 [![image.png](https://i.postimg.cc/4NC6k6Qf/image.png)](https://postimg.cc/hhrzV7Y6)
 
 Por otro lado, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
