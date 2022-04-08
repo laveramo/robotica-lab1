@@ -92,7 +92,11 @@ En cambio en esta, se usó un tiempo de 1 s:
 
 [![image.png](https://i.postimg.cc/4NC6k6Qf/image.png)](https://postimg.cc/hhrzV7Y6)
 
-Por otro lado, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
+El movimiento de la tortuga no solo se ve afectado por este tiempo sino también por los valores de las velocidades. En este caso usamos una velocidad de magnitud 2 en todos los casos ya que con valores menores la tortuga no avanza tanto por cada vez que se oprime una tecla.
+
+También es importante mencionar que `PubVel()` utiliza la velocidad lineal en x de la tortuga ya que se refiere al eje x relativo de ella, es decir, el que está alineado con su cabeza. Si el código se cambiara para que usara la velocidad en y el comportamiento no sería el deseado.
+
+Finalmente, en el ciclo while se vuelve a llamar constantemente a esta función con velocidades iguales a cero, para que pare cuando no se esté detectando ninguna tecla.
 
 ## Referencias
 [1] [Laboratorio 1 - Parte 2: Introducción ROS](https://drive.google.com/file/d/19UOE_eI-ob2ZymNHWFrYgrxLQfgOon43/view)
