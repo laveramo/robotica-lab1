@@ -1,7 +1,7 @@
 %%
 %rosinit; %Conexión con nodo maestro, correr solo 1 una vez
 %%
-client = rossvcclient('/turtle1/teleport_absolute'); %Creación subscriptor
+client = rossvcclient('/turtle1/teleport_absolute'); %Creación cliente
 %%
 request = rosmessage(client);
 request.X = 5; %insertar posición en x
